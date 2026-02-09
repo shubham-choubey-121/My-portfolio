@@ -7,7 +7,7 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="space-y-12">
           <div>
-            <h2 className="text-4xl font-bold mb-2">Projects</h2>
+            <h2 className="text-4xl font-extrabold mb-2 text-gray-900 dark:text-white">Projects</h2>
             <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full"></div>
           </div>
 

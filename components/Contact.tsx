@@ -51,7 +51,7 @@ export default function Contact() {
       <div className="max-w-4xl mx-auto px-4">
         <div className="space-y-12">
           <div>
-            <h2 className="text-4xl font-bold mb-2">Get In Touch</h2>
+           <h2 className="text-4xl font-extrabold mb-2 text-gray-900 dark:text-white">Get In Touch</h2>
             <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full"></div>
             <p className="text-gray-600 dark:text-gray-400 text-lg mt-4">
               I'm always interested in hearing about new projects and opportunities.

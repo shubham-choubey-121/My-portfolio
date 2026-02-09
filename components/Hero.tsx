@@ -15,7 +15,7 @@ export default function Hero() {
         <div className="space-y-6">
           <div className="space-y-2">
             <p className="text-blue-600 dark:text-blue-400 font-semibold text-lg">Welcome to my portfolio</p>
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-gray-100">
               Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Shubham</span>
             </h1>
           </div>

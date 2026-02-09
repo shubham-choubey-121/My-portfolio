@@ -17,7 +17,7 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center space-y-10">
           <div>
-            <h2 className="text-4xl font-bold mb-2">Skills & Technologies</h2>
+            <h2 className="text-4xl font-extrabold mb-2 text-gray-900 dark:text-white">Skills & Technologies</h2>
             <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mx-auto"></div>
           </div>
 
