@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
             <!-- Header -->
             <div style="display:flex; align-items:center; gap:10px; padding:16px 20px; border-bottom:1px solid #e5e7eb;">
               <img
-                src="https://your-domain.com/logo.png"
+                src="https://shubhamchoubey-portfolio.vercel.app/logo.png"
                 alt="Shubham Logo"
                 width="40"
                 height="40"
