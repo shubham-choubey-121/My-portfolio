@@ -29,6 +29,6 @@ export const projects = [
       "My personal developer portfolio showcasing my projects, skills, and professional journey.",
     tech: ["Next.js", "Tailwind CSS", "TypeScript"],
     image: "/projects/portfolio.png",
-    link: "https://github.com/shubham-choubey-121/KreevaConstruction.git",
+    link: "https://shubhamchoubey-portfolio.vercel.app/",
   },
 ];
