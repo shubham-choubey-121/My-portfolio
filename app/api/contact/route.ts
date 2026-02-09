@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 // ENV VARIABLES
 const EMAIL_USER = process.env.EMAIL_USER;
 const EMAIL_PASS = process.env.EMAIL_PASS;
-const EMAIL_TO = process.env.EMAIL_TO || process.env.EMAIL_USER;
+const EMAIL_TO = process.env.EMAIL_TO || EMAIL_USER;
 
 if (!EMAIL_USER || !EMAIL_PASS) {
   console.error("Missing EMAIL_USER or EMAIL_PASS");
@@ -21,8 +21,13 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message } = await req.json();
+    const body = await req.json();
 
+    const name = body?.name?.trim();
+    const email = body?.email?.trim();
+    const message = body?.message?.trim();
+
+    // 🛑 HARD VALIDATION (blank submit block)
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Name, Email and Message are required" },
@@ -30,8 +35,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (message.length < 5) {
+      return NextResponse.json(
+        { error: "Message is too short" },
+        { status: 400 }
+      );
+    }
 
-    // EMAIL TO Me
+    // EMAIL TO OWNER
     const mailToOwner = {
       from: `"Portfolio Contact" <${EMAIL_USER}>`,
       to: EMAIL_TO,
@@ -42,43 +53,32 @@ export async function POST(req: NextRequest) {
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <p>${message.replace(/\n/g, "<br/>")}</p>
       `,
     };
 
-
-    //  CONFIRMATION EMAIL TO USER
+    // CONFIRMATION EMAIL TO USER
     const mailToUser = {
       from: `"Shubham Choubey" <${EMAIL_USER}>`,
       to: email,
       replyTo: EMAIL_USER,
       subject: "Thanks for contacting me — Shubham Choubey",
       html: `
-        <div style="font-family: Arial, sans-serif; background:#f9fafb; padding:20px;">
-          <div style="max-width:600px; margin:auto; background:#ffffff; border-radius:8px; overflow:hidden;">
+        <div style="font-family:Arial,sans-serif;background:#f9fafb;padding:20px;">
+          <div style="max-width:600px;margin:auto;background:#ffffff;border-radius:8px;overflow:hidden;">
 
             <!-- Header -->
-            <div style="display:flex; align-items:center; gap:10px; padding:16px 20px; border-bottom:1px solid #e5e7eb;">
+            <div style="display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid #e5e7eb;">
               <img
-                src="https://shubhamchoubey-portfolio.vercel.app/logo.png"
+                src="https://shubhamchoubey-portfolio.vercel.app/mail.png"
                 alt="Shubham Logo"
-                width="40"
                 height="40"
                 style="border-radius:8px;"
               />
-              <span style="
-                font-size:18px;
-                font-weight:700;
-                background: linear-gradient(90deg, #2563eb, #60a5fa);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-              ">
-                Shubham.dev
-              </span>
             </div>
 
             <!-- Body -->
-            <div style="padding:20px; color:#111827;">
+            <div style="padding:20px;color:#111827;">
               <h2 style="margin-top:0;">Hi ${name},</h2>
 
               <p>
@@ -113,7 +113,6 @@ export async function POST(req: NextRequest) {
       `,
     };
 
-    // Send emails
     await transporter.sendMail(mailToOwner);
     await transporter.sendMail(mailToUser);
 
