@@ -124,7 +124,11 @@ export async function POST(req: NextRequest) {
               </div>
 
               <div style="font-size:12px;color:#9ca3af;">
-                © ${new Date().getFullYear()} Shubham Choubey · shubham.dev
+                © ${new Date().getFullYear()} Shubham Choubey · 
+                <a href="https://shubhamchoubey-portfolio.vercel.app" 
+                  style="color:#2563eb;text-decoration:none;">
+                  shubham.dev
+                </a>
               </div>
 
             </div>
