@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
     const mailToUser = {
       from: `"Shubham Choubey" <${EMAIL_USER}>`,
       to: email,
-      replyTo: EMAIL_USER,
+      replyTo: EMAIL_TO,
       subject: "Thanks for contacting me — Shubham Choubey",
       html: `
         <div style="font-family:Arial,sans-serif;background:#f3f4f6;padding:30px 15px;">
